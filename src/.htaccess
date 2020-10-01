@@ -1,0 +1,21 @@
+AddDefaultCharset UTF-8
+
+Options +FollowSymlinks
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^mylegoprofilpic.com$
+RewriteRule ^(.*) http://www.mylegoprofilpic.com/$1 [QSA,L,R=301]
+
+ErrorDocument 404 http://www.mylegoprofilpic.com/
+ErrorDocument 403 http://www.mylegoprofilpic.com/
+
+RewriteRule ^init/$                                                                             clear.php [L]
+RewriteRule ^upload/$                                                                           upload.php [L]
+RewriteRule ^download/([a-zA-Z0-9]+)/$                                                          dl.php?crypt=$1 [L]
+
+RewriteRule ^lego/([a-zA-Z0-9]+)/$                                                              index.php?rub=affichage&crypt=$1 [L]
+RewriteRule ^lego/([a-zA-Z0-9]+)$                                                               index.php?rub=affichage&crypt=$1 [L]
+
+RewriteRule ^lego/([a-zA-Z0-9]+)/lego.jpg$                                                      render/$1/lego.jpg [L]
+
+RewriteRule ^lego/temp/([a-zA-Z0-9]+)/([a-zA-Z0-9\-\._]+)$                                      temp/$1/$2 [L]
